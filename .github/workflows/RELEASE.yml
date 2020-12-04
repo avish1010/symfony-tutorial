@@ -18,7 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Artifact for Repository
-        run: zip -qq -x *.git* -r ${{ github.workspace }}/release.zip .
+        run: |
+          mv src /test
+          mv README.md /test
+          zip /test -qq -x *.git* -r release.zip .
 
       - name: Bump version and push tag
         id: bump_version
