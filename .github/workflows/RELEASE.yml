@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create Artifact for Repository
-        run: zip -qq -x *.git* -r result.zip .
+        run: zip -qq -x *.git* -r ${{ github.workspace }}/result.zip .
 
       - name: Bump version and push tag
         id: bump_version
