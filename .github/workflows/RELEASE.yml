@@ -21,7 +21,7 @@ jobs:
         with:
           files: src/ manifest.json
           dest: result.zip
-          recursive: true
+          recursive: false
 
       - name: Bump version and push tag
         id: bump_version
