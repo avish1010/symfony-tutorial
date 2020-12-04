@@ -30,6 +30,6 @@ jobs:
         uses: actions/create-release@v1
         with:
           tag_name: ${{ steps.bump_version.outputs.tag }}
-          release_name: ${{ steps.bump_version.outputs.tag }}
+          release_name: release
           draft: false
           prerelease: false
