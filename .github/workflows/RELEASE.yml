@@ -19,8 +19,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create Artifact for Repository
         run: |
-          mv src /test
-          mv README.md /test
+          sudo mv src /test
+          sudo mv README.md /test
           zip /test -qq -x *.git* -r release.zip .
 
       - name: Bump version and push tag
