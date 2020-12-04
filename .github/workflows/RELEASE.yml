@@ -18,10 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Release Folder
-        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
+        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./test/release
       - name: Create Artifact for Repository
         run: |
-          cd release 
+          cd test | 
           zip -qq -x *.git* -r release.zip .
 
       - name: Bump version and push tag
@@ -41,6 +41,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/release.zip
+          asset_path: ./release.zip
           asset_name: release.zip
           asset_content_type: application/zip
