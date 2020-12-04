@@ -17,12 +17,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Create Release Folder
-        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ../test/release
+
       - name: Create Artifact for Repository
-        run: |
-          cd test | 
-          zip -qq -x *.git* -r release.zip .
+        run:
+          mkdir release && cp LICENCE README.md composer.json phpunit.xml src/ -r  release/
+          zip -qq -r release.zip release/
 
       - name: Bump version and push tag
         id: bump_version
