@@ -17,14 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: papeloto/action-zip@v1
-        with:
-          files: cko-test/
-          dest: cko-test.zip
-          recursive: false
 
       - name: Create Artifact for Repository
-        run: zip -qq -x *.git* -r cko-test.zip .
+        run: zip -qq -x *.git* -r result.zip .
 
       - name: Bump version and push tag
         id: bump_version
@@ -43,6 +38,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./cko-test.zip
-          asset_name: cko-test.zip
+          asset_path: ./${{ github.workspace }}/result.zip
+          asset_name: result.zip
           asset_content_type: application/zip
