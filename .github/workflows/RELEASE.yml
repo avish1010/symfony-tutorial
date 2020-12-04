@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Release Folder
-        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./test/release
+        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ../test/release
       - name: Create Artifact for Repository
         run: |
           cd test | 
