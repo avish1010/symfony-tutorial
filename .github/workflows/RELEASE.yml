@@ -17,9 +17,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      - name: Create Release Folder
+        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
       - name: Create Artifact for Repository
-        run: zip -qq -x *.git* -r release.zip .
+        run: |
+          cd release 
+          zip -qq -x *.git* -r release.zip .
 
       - name: Bump version and push tag
         id: bump_version
