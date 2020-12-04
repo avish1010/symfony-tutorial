@@ -19,8 +19,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create Artifact for Repository
-        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
-        run: zip -r release release.zip .
+        run: |
+          rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release |
+          zip -r release release.zip
 
       - name: Bump version and push tag
         id: bump_version
