@@ -18,8 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create Artifact for Repository
-        run: git archive --format zip --output release.zip master
+      - uses: papeloto/action-zip@v1
+        with:
+          files: src/ README.md
+          recursive: false
+          dest: release.zip
 
       - name: Bump version and push tag
         id: bump_version
