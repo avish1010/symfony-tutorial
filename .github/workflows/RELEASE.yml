@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Create Artifact for Repository
+        run: zip --junk-paths -qq -x *.git* -r release.zip .
+
       - name: Bump version and push tag
         id: bump_version
         uses: anothrNick/github-tag-action@1.33.0
@@ -35,6 +38,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /archive/master.zip
+          asset_path: ./release.zip
           asset_name: release.zip
           asset_content_type: application/zip
