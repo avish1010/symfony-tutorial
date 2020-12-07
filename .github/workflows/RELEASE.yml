@@ -19,7 +19,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create Artifact for Repository
-        run: zip --junk-paths release -qq -x *.git* -r release.zip .
+        run: | 
+              mkdir release && cp src/ README.md release/
+             |
+              zip -x "test.php" -r release . release.zip
 
       - name: Bump version and push tag
         id: bump_version
