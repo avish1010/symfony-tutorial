@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create Artifact for Repository
-        run: zip --junk-paths -qq -x *.git* -r release.zip .
+        run: zip --junk-paths release -qq -x *.git* -r release.zip .
 
       - name: Bump version and push tag
         id: bump_version
