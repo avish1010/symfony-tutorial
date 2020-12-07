@@ -19,7 +19,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create Artifact for Repository
-        # run: zip -qq -x *.git* -r cko-shopware6-store-plugin.zip .
          run: zip -r -x *.git* release.zip .
 
       - name: Bump version and push tag
