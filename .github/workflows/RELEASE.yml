@@ -14,7 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Artifact for Repository
-        run: mkdir release && cp src/ README.md -r release/ && zip release.zip release/
+        run: mkdir release &&
+          cp src/ README.md -r release/ &&
+          zip release.zip release/ -r
 
       - name: Bump version and push tag
         id: bump_version
