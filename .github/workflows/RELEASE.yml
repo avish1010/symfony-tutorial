@@ -1,25 +1,22 @@
 name: Release
-
 on:
   push:
     branches:
       - master
-
 env:
   CI: true
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   INITIAL_VERSION: 1.0.0
   DEFAULT_BUMP: patch
-
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          path: release
       - name: Create Artifact for Repository
-        run: git archive --format=zip --output release.zip HEAD
+        run: cd .. && zip -qq -x *.git* -r release.zip release
 
       - name: Bump version and push tag
         id: bump_version
