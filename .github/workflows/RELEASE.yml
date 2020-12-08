@@ -13,10 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          path: release
       - name: Create Artifact for Repository
-        run: cd .. && zip -qq -x *.git* -r release.zip release
+        run: mkdir release && cp src/ README.md -r release/ && zip release.zip release/
 
       - name: Bump version and push tag
         id: bump_version
